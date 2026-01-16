@@ -1,0 +1,15 @@
+// Buggy version: crashes on small lists, unused variable
+public LNode deleteMid(LNode head) {
+    LNode slow = head;
+    LNode fast = head;
+
+    while (fast.next != null && fast.next.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+    }
+
+    Object temp = slow.next; // unused
+    slow.next = slow.next.next; // may throw NullPointerException
+
+    return head;
+}
